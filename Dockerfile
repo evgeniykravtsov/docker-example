@@ -1,14 +1,6 @@
-FROM node:14-alpine AS development
-ENV NODE_ENV development
-
+FROM node:16.10-alpine3.11 AS build
 WORKDIR /app
-
-COPY package.json .
-COPY yarn.lock .
+COPY package.json package.json
 RUN yarn install
-
 COPY . .
-
-EXPOSE 3000
-
-RUN yarn start
+RUN yarn build
